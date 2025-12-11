@@ -1,111 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="googlebot" content="noindex"><meta name="googlebot-news" content="nosnippet"><meta name="robots" content="noindex, follow"><title>eaglercraft Play at Dinhnt</title><meta name="description" content="Play Eaglercraft game online for free in fullscreen unblocked mode!"><meta property="og:type" content="website"><meta property="og:site_name" content="Dinhnt"><meta property="og:url" content="https://geometry-lessons.github.io/game/eaglercraft.html"><meta property="og:title" content="eaglercraft"><meta property="og:description" content="Play Eaglercraft game online for free in fullscreen unblocked mode!"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="eaglercraft"><meta name="twitter:description" content="Play Eaglercraft game online for free in fullscreen unblocked mode!"><link rel="canonical" href="https://geometry-lessons.github.io/game/eaglercraft.html"><meta property="og:locale" content="EN"><meta property="article:published_time" content="2025-05-20T01:35:42+00:00"><meta property="article:modified_time" content="2025-05-20T01:35:42+00:00"><meta property="og:updated_time" content="2025-05-20T01:35:42+00:00">
-
-    <script>
-        var domain = "https://geometry-lessons.github.io",
-        langid = `en`,
-        ismainlang = `1`,
-        ldomain = (ismainlang) ? domain : `${domain}/${langid}`;
-    </script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>DIGY GAMES</title>
+    
     <style>
-        /* Essential CSS to make the iframe fill the entire screen */
-        html, body {
-            height: 100%;
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+
+        * {
             margin: 0;
-            overflow: hidden; /* Prevent scrollbars */
+            padding: 0;
+            box-sizing: border-box;
         }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+            font-family: 'Courier Prime', monospace;
+        }
+
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10001;
+            opacity: 1;
+            transition: opacity 0.8s ease-out;
+        }
+
+        #intro-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #intro-content {
+            text-align: center;
+            animation: fadeInUp 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #company-name {
+            font-size: 72px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        #company-subtitle {
+            font-size: 24px;
+            font-weight: 400;
+            color: #888888;
+            letter-spacing: 2px;
+        }
+
         #game-container {
             width: 100%;
             height: 100%;
-            position: relative; /* Needed for button positioning */
+            position: relative;
         }
+
         #game-iframe {
             width: 100%;
             height: 100%;
-            display: block;
-        }
-        #fullscreen-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 10; /* Ensure button is above the iframe */
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
             border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            opacity: 0.8; /* Make it slightly transparent */
-        }
-        #fullscreen-btn:hover {
-            opacity: 1;
+            display: block;
+            background: #000;
         }
     </style>
 </head>
+<body>
 
-<body class="">
+    <div id="intro-screen">
+        <div id="intro-content">
+            <div id="company-name">DIGY GAMES</div>
+            <div id="company-subtitle">By: Zayn Azar</div>
+        </div>
+    </div>
 
-<div id="game-container">
-    
-    <button id="fullscreen-btn">Go Fullscreen</button>
-
-    <iframe id="game-iframe" 
-            src="https://jasongamesdev.github.io/eaglercraft/" 
+    <div id="game-container">
+        <iframe 
+            id="game-iframe"
+            src="https://eaglercraft-unblocked.neocities.org/eaglymc-120/"
             frameborder="0"
-            border="0" 
-            scrolling="no" 
-            allowfullscreen 
-            allow="fullscreen">
-    </iframe>
-</div>
+            scrolling="no"
+            allowfullscreen
+            allow="fullscreen; accelerometer; camera; gyroscope; microphone">
+        </iframe>
+    </div>
 
+    <script>
+        const introScreen = document.getElementById('intro-screen');
+        const iframe = document.getElementById('game-iframe');
 
-<script>
-    // Get the iframe and button elements
-    const iframe = document.getElementById('game-iframe');
-    const fullscreenBtn = document.getElementById('fullscreen-btn');
+        // Show intro for 3.5 seconds, then fade to game
+        setTimeout(() => {
+            introScreen.classList.add('fade-out');
+        }, 3500);
 
-    // Function to request fullscreen
-    function openFullscreen() {
-        if (iframe.requestFullscreen) {
-            iframe.requestFullscreen();
-        } else if (iframe.mozRequestFullScreen) { /* Firefox */
-            iframe.mozRequestFullScreen();
-        } else if (iframe.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-            iframe.webkitRequestFullscreen();
-        } else if (iframe.msRequestFullscreen) { /* IE/Edge */
-            iframe.msRequestFullscreen();
+        // Focus game and enter fullscreen after intro
+        setTimeout(() => {
+            iframe.focus();
+            enterFullscreen();
+        }, 4500);
+
+        // Fullscreen function
+        function enterFullscreen() {
+            const elem = document.documentElement;
+            
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(e => console.log('Fullscreen error:', e));
+            } else if (elem.mozRequestFullScreen) {
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
         }
-    }
+    </script>
 
-    // Attach the function to the button click event
-    fullscreenBtn.addEventListener('click', openFullscreen);
-
-    // Optional: Hide button when already in fullscreen (browser may handle this, but it's good practice)
-    document.addEventListener('fullscreenchange', (event) => {
-        if (document.fullscreenElement) {
-            fullscreenBtn.style.display = 'none';
-        } else {
-            fullscreenBtn.style.display = 'block';
-        }
-    });
-
-    // You can remove the old jquery and game-embedded.js scripts if they are no longer needed
-    // The previous scripts were:
-    // <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    // <script src="/assets/js/game-embedded.js"></script>
-
-    // Note: To automatically play the game on load, you may need to rely on the game's internal setup.
-    // The previous HTML contained elements to overlay a play button which are now removed.
-</script>
 </body>
-    
 </html>
